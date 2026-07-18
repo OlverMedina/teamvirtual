@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#39a900">
+  <meta
+    name="description"
+    content="Plataforma de control y administración de la formación virtual."
+  >
+  <title>Formación Virtual</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, Roboto, "Segoe UI", Arial, sans-serif;
+      --sena-verde: #39a900;
+      --sena-oscuro: #007832;
+      --texto: #17351f;
+      --fondo: #f3faf5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: var(--fondo);
+    }
+
+    .app-shell {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .app-frame {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff;
+    }
+
+    .loading-panel {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at top, rgba(57, 169, 0, 0.18), transparent 42%),
+        linear-gradient(145deg, #f8fcf9, #e9f7ed);
+      transition: opacity 220ms ease, visibility 220ms ease;
+    }
+
+    .loading-panel.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loading-card {
+      width: min(460px, 100%);
+      padding: 32px;
+      border: 1px solid rgba(0, 120, 50, 0.16);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 22px 60px rgba(0, 70, 31, 0.14);
+      text-align: center;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 18px;
+      border-radius: 18px;
+      color: #fff;
+      background: linear-gradient(145deg, var(--sena-verde), var(--sena-oscuro));
+      font-size: 29px;
+      font-weight: 800;
+      box-shadow: 0 10px 25px rgba(0, 120, 50, 0.22);
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--texto);
+      font-size: clamp(1.35rem, 4vw, 1.8rem);
+    }
+
+    p {
+      margin: 10px 0 0;
+      color: #587060;
+      line-height: 1.55;
+    }
+
+    .spinner {
+      width: 34px;
+      height: 34px;
+      margin: 24px auto 0;
+      border: 4px solid #dcece1;
+      border-top-color: var(--sena-verde);
+      border-radius: 50%;
+      animation: girar 800ms linear infinite;
+    }
+
+    .direct-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      margin-top: 24px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      color: #fff;
+      background: var(--sena-oscuro);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .direct-link:hover,
+    .direct-link:focus-visible {
+      background: #005f28;
+      outline: 3px solid rgba(57, 169, 0, 0.26);
+      outline-offset: 3px;
+    }
+
+    .help-text {
+      font-size: 0.84rem;
+    }
+
+    @keyframes girar {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .spinner {
+        animation-duration: 1600ms;
+      }
+
+      .loading-panel {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app-shell">
+    <section class="loading-panel" id="loadingPanel" aria-live="polite">
+      <div class="loading-card">
+        <div class="brand-mark" aria-hidden="true">TV</div>
+        <h1>Formación Virtual</h1>
+        <p>Cargando la plataforma de control y administración…</p>
+        <div class="spinner" aria-hidden="true"></div>
+        <a
+          class="direct-link"
+          href="https://script.google.com/macros/s/AKfycbw_Xf9U50OXQBz3TeD3FrGXKPKN8nozGKzd0cYvmvtELNH7gzbhQc5DrsmtzYT8NILafA/exec"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Abrir directamente
+        </a>
+        <p class="help-text">
+          Usa este botón si la plataforma no aparece después de unos segundos.
+        </p>
+      </div>
+    </section>
+
+    <iframe
+      id="teamVirtualFrame"
+      class="app-frame"
+      title="Plataforma de Formación Virtual"
+      src="https://script.google.com/macros/s/AKfycbw_Xf9U50OXQBz3TeD3FrGXKPKN8nozGKzd0cYvmvtELNH7gzbhQc5DrsmtzYT8NILafA/exec"
+      allow="clipboard-read; clipboard-write; fullscreen"
+      referrerpolicy="strict-origin-when-cross-origin"
+    ></iframe>
+  </main>
+
+  <script>
+    (() => {
+      const frame = document.getElementById('teamVirtualFrame');
+      const loadingPanel = document.getElementById('loadingPanel');
+
+      frame.addEventListener('load', () => {
+        window.setTimeout(() => {
+          loadingPanel.classList.add('is-hidden');
+          loadingPanel.setAttribute('aria-hidden', 'true');
+        }, 350);
+      });
+    })();
+  </script>
+</body>
+</html>
